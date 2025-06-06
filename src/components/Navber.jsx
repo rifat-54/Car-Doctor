@@ -53,7 +53,7 @@ const Navber = () => {
             </ul>
           </div>
           <Link href={"/"} className=" text-xl">
-            <Image src={"/assets/logo.svg"} width={107} height={87} />
+            <Image src={"/assets/logo.svg"} alt="Logo" width={107} height={87} />
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
