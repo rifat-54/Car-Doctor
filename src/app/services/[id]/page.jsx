@@ -15,7 +15,7 @@ const servicePage = async({params}) => {
             <div>
                 <div className='flex justify-center'>
                     <figure className='relative  mx-auto '>
-                        <Image className='rounded-md h-full'  src={'/assets/images/checkout/checkout.png'} width={1170} height={400} />
+                        <Image className='rounded-md h-full'  src={'/assets/images/checkout/checkout.png'} width={1170} height={400} alt='banner' />
                         <div className=' bg-layer rounded-md top-0 w-full h-full absolute '>
 
                             <p className='text-white absolute top-[20%] left-[10%] text-3xl font-bold'>Services Details</p>

@@ -1,23 +1,36 @@
 'use client'
 
 import React from 'react';
-import { FaGithub } from "react-icons/fa6";
-import { FaGoogle } from "react-icons/fa";
+
+
 import Link from "next/link";
 import { signIn} from "next-auth/react"
+import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
+import SocialLogin from './SocialLogin';
 
 const LoginFrom = () => {
+    const router=useRouter()
     const handleSubmit = async (e) => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-      console.log(email,password);
+    //   console.log(email,password);
+    toast('Submitting...')
       try {
-        const res= await signIn('credentials',{email,password,callbackUrl:'/'});
-        console.log(res);
+        const res= await signIn('credentials',{email,password,callbackUrl:'/',redirect:false});
+        if(res.ok){
+            router.push('/');
+            form.reset();
+            toast.success("Succesfully Login")
+        }else{
+            toast.error('Authentication Failed')
+        }
+      
       } catch (error) {
-        console.log(error);
+        
+        toast.error('Authentication Failed')
       }
     
        
@@ -50,7 +63,7 @@ const LoginFrom = () => {
             Sign In
           </button>
           <p className="text-center">Or Sign In with</p>
-          {/* <SocialLogin /> */}
+          <SocialLogin></SocialLogin>
           <p className="text-center">
             Already have an account?{" "}
             <Link href="/register" className="text-orange-500 font-bold">

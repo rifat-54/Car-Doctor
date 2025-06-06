@@ -1,8 +1,12 @@
+'use client'
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 const Navber = () => {
+  const session=useSession()
+  console.log(session?.status);
   const navlink = (
     <>
       <li>
@@ -60,7 +64,30 @@ const Navber = () => {
           <ul className="menu menu-horizontal px-1">{navlink}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Appointment</a>
+          <ul className="flex flex-wrap items-center gap-3">
+            {
+              session.status==='authenticated'?
+              (<div className="flex gap-2 items-center">
+              <li>
+                <Image className="h-12 w-12 rounded-full" src={session?.data?.user?.image} width={40} height={40} alt="profile"/>
+              </li>
+              <li className="cursor-pointer btn-accent" onClick={()=>signOut()}>LouOut</li>
+              </div>)
+              :
+              (<>
+                <li>
+                  <Link className="btn" href={'/login'}>Login</Link>
+                </li>
+                <li>
+        
+                  <Link className="btn" href={'/register'}>Register</Link>
+                </li>
+                
+                
+              </>)
+            }
+          </ul>
+          <a className="btn ml-3">Appointment</a>
         </div>
       </div>
     </div>

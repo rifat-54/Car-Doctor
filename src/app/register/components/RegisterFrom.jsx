@@ -1,8 +1,8 @@
 'use client'
 import React from 'react';
 import Link from "next/link";
-import { FaFacebookF, FaLinkedinIn, FaGoogle } from "react-icons/fa";
 import registerUser from '@/app/actions/auth/registerUser';
+import SocialLogin from '@/app/login/components/SocialLogin';
 
 const RegisterFrom = () => {
     const handleSubmit = async (e) => {
@@ -57,7 +57,7 @@ const RegisterFrom = () => {
             Sign Up
           </button>
           <p className="text-center">Or Sign In with</p>
-          {/* <SocialLogin /> */}
+         <SocialLogin></SocialLogin>
           <p className="text-center">
             Don't Have an account?{" "}
             <Link href="/login" className="text-orange-500 font-bold">

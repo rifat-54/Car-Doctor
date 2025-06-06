@@ -8,7 +8,7 @@ const registerUser = async(payload) => {
     const userCollecions=dbConnect(collectinName.userCollections)
 
     if(!email || !password){
-        return {success:false};
+        return null;
     }
 
     const user=await userCollecions.findOne({email:payload.email})
@@ -17,12 +17,11 @@ const registerUser = async(payload) => {
         const hasPassword=await bcrypt.hash(password,10)
         payload.password=hasPassword;
         const result=await userCollecions.insertOne(payload);
-        const{insertedId}=result;
-        // console.log('result',result);
-        console.log('idd',insertedId);
-        return {insertedId};
+        result.insertedId=result.insertedId.toString()
+        
+        return result;
     }else{
-        return {success:false};
+        return null;
     }
 };
 
