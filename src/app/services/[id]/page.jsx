@@ -1,13 +1,13 @@
-import { collectinName, dbConnect } from '@/lib/dbConnect';
-import { ObjectId } from 'mongodb';
+
+
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 const servicePage = async({params}) => {
-
-    const p=await params.id;
-    const servicesCollection=dbConnect(collectinName.servicesCollection)
-    const data=await servicesCollection.findOne({_id:new ObjectId(p)})
+        const p=await params;
+    const res=await fetch(`http://localhost:3000/api/service/${p?.id}`)
+    const data=await res.json();
 
 
     return (
@@ -24,9 +24,21 @@ const servicePage = async({params}) => {
                         
                     </figure>
                 </div>
+               
             </div>
-            <p>{p}</p>
-            {/* <p>{JSON.stringify(data)}</p> */}
+            <div className='mt-10 md:px-10 grid grid-cols-12 justify-between gap-10'>
+                <div className='col-span-8'>
+                    <Image className='w-full rounded-md' src={data?.img} width={400} height={200} alt='banner'/>
+                </div>
+                <div className='col-span-3 mt-10'>
+                    <Link href={`/checkout/${data?._id}`}>
+                    <button className='btn bg-[#FF3811] text-white'>CheckOut $<span>{data?.price}</span> </button>
+                    </Link>
+                   
+                </div>
+            </div>
+            <p>{p.id}</p>
+            <p>{JSON.stringify(data)}</p>
         </div>
     );
 };

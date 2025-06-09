@@ -2,7 +2,8 @@ import { MongoClient, ServerApiVersion } from 'mongodb'
 
 export const collectinName={
     servicesCollection:'services',
-    userCollections:'users'
+    userCollections:'users',
+    bookingCollections:'booked'
 }
 
 
