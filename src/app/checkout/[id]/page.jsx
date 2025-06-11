@@ -3,7 +3,7 @@ import React from 'react';
 
 const page = async({params}) => {
     const p= params;
-    const res=await fetch(`http://localhost:3000/api/service/${p?.id}`)
+    const res=await fetch(`${process.env.NEXTAUTH_URL}/api/service/${p?.id}`)
     const data=await res.json();
 
     return (

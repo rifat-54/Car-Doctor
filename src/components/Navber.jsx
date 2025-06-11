@@ -6,7 +6,7 @@ import React from "react";
 
 const Navber = () => {
   const session=useSession()
-  console.log(session?.status);
+  // console.log(session?.status);
   const navlink = (
     <>
       <li>
@@ -23,6 +23,9 @@ const Navber = () => {
       </li>
       <li>
         <Link href={"/"}>Contact</Link>
+      </li>
+      <li>
+        <Link href={"/my-booking"}>My Booking</Link>
       </li>
    
     </>

@@ -11,10 +11,10 @@ const RegisterFrom = () => {
         const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
-        console.log({ name, email, password });
+        // console.log({ name, email, password });
         // await registerUser({ name, email, password });
        const rs= await registerUser({ name, email, password })
-       console.log('register page->',rs);
+      //  console.log('register page->',rs);
 
         
       };
